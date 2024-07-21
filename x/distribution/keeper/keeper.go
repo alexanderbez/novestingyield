@@ -59,6 +59,7 @@ func (k Keeper) WithdrawDelegationRewards(ctx context.Context, delAddr sdk.AccAd
 	if ok {
 		sdkCtx := sdk.UnwrapSDKContext(ctx)
 
+		// if we have ANY tokens currently still vesting, we prohibit withdrawal
 		if !vacc.GetVestingCoins(sdkCtx.BlockTime()).IsZero() {
 			return nil, types.ErrForbiddenWithdrawal.Wrapf("vesting account %s cannot withdraw rewards", delAddr)
 		}

@@ -17,7 +17,6 @@ type Keeper struct {
 	dstrkeeper.Keeper
 
 	authKeeper dstrtypes.AccountKeeper
-	bankKeeper dstrtypes.BankKeeper
 }
 
 // NewKeeper creates a new distribution Keeper instance, embedding or wrapping
@@ -38,7 +37,6 @@ func NewKeeper(
 	return Keeper{
 		Keeper:     dstrkeeper.NewKeeper(cdc, storeService, ak, bk, sk, feeCollectorName, authority),
 		authKeeper: ak,
-		bankKeeper: bk,
 	}
 }
 
